@@ -1,0 +1,35 @@
+drop table if exists lessons;
+create table lessons (les_id int primary key auto_increment, les_course int, les_ts varchar(200),les_number int, les_instructor int);
+
+insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_1,1, cou_ins_1 from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_2,2, cou_ins_2 from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_3,3, cou_ins_3 from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_4,4, cou_ins_4 from courses;
+
+alter table courses drop column cou_ts_1;
+alter table courses drop column cou_ts_2;
+alter table courses drop column cou_ts_3;
+alter table courses drop column cou_ts_4;
+alter table courses drop column cou_ins_1;
+alter table courses drop column cou_ins_2;
+alter table courses drop column cou_ins_3;
+alter table courses drop column cou_ins_4;
+
+drop table if exists application2;
+create table application2 (app_id int primary key auto_increment, app_lesson int, app_member int, app_notes text,app_ins varchar(10));
+insert into application2 (app_lesson, app_member, app_notes,app_ins) select les_id,a.app_member,a.app_notes,app_ins from lessons l, applications a where l.les_course=a.app_course;
+
+drop table applications;
+rename table application2 to applications;
+
+
+delete from lessons where les_ts="" and les_number=4;
+
+delete from lessons where les_number=3 and les_course in
+(select cou_id from courses where cou_type='sam');
+
+
+
+
+
+

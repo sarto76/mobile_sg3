@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="257e6f64-f23c-4e86-ba52-8b08b38b4c7e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/ER_NUOVO.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/views/courses/addCourse.php" afterPath="$PROJECT_DIR$/pages/views/courses/addCourse.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/views/members/show.php" afterPath="$PROJECT_DIR$/pages/views/members/show.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manage_lesson.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="manage_lesson.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/views/lessons/manage_lesson.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
@@ -122,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/views/members/show.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="50" lean-forward="false" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+            <state relative-caret-position="476">
+              <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -169,6 +167,7 @@
         <option value="$PROJECT_DIR$/pages/controllers/courses_controller.php" />
         <option value="$PROJECT_DIR$/pages/model/lessons_model.php" />
         <option value="$PROJECT_DIR$/pages/views/courses/addCourse.php" />
+        <option value="$PROJECT_DIR$/pages/views/members/show.php" />
       </list>
     </option>
   </component>
@@ -424,12 +423,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497939920263</updated>
-      <workItem from="1497939948580" duration="13339000" />
+      <workItem from="1497939948580" duration="15238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13339000" />
+    <option name="totallyTimeSpent" value="15238000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1688" y="-100" width="1696" height="1026" extended-state="6" />
@@ -494,14 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/views/members/show.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="50" lean-forward="false" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -619,6 +610,14 @@
             <marker date="1497956610050" expanded="true" signature="3583:3758" ph="..." />
             <marker date="1497956610050" expanded="true" signature="3612:3758" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/views/members/show.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

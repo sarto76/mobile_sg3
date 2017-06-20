@@ -82,10 +82,7 @@
 </div>
 <!-- /.row -->
 
-<script src="../vendor/jquery/jquery.min.js"></script>
 
-<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../vendor/bootstrap/js/locales/bootstrap-datetimepicker.it.js" charset="UTF-8"></script>
 
 
 

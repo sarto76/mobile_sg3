@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="257e6f64-f23c-4e86-ba52-8b08b38b4c7e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/connection.php" afterPath="$PROJECT_DIR$/pages/connection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/controllers/courses_controller.php" afterPath="$PROJECT_DIR$/pages/controllers/courses_controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/includes.php" afterPath="$PROJECT_DIR$/pages/includes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/model/applications_model.php" afterPath="$PROJECT_DIR$/pages/model/applications_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/model/lessons_model.php" afterPath="$PROJECT_DIR$/pages/model/lessons_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/query_modifica_DB" afterPath="$PROJECT_DIR$/pages/query_modifica_DB" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/routes.php" afterPath="$PROJECT_DIR$/pages/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/views/courses/addCourse.php" afterPath="$PROJECT_DIR$/pages/views/courses/addCourse.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/views/lessons/manage_lesson.php" afterPath="$PROJECT_DIR$/pages/views/lessons/manage_lesson.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -430,15 +422,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497939920263</updated>
-      <workItem from="1497939948580" duration="12474000" />
+      <workItem from="1497939948580" duration="12958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12474000" />
+    <option name="totallyTimeSpent" value="12958000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1688" y="-100" width="1696" height="1026" extended-state="6" />
+    <frame x="-1688" y="-100" width="1696" height="1026" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />

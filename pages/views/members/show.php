@@ -8,6 +8,17 @@
 <div class="row">
 
     <div class="col-lg-12">
+        <?php echo $this->l_error;?>
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <a style="cursor: pointer;" href='?controller=members&action=manageMember'><i class="fa fa-plus-circle"></i>
+                    Nuovo allievo
+                </a>
+
+
+            </div>
+
+        </div>
         <div class="panel panel-default">
 
             <div class="panel-body">

@@ -44,7 +44,7 @@ function call($controller, $action) {
 // just a list of the controllers we have and their actions
 // we consider those "allowed" values
 $controllers = array('pages' => ['home', 'error','show'],
-                     'members' => ['show','showManageMember','manageMember','updateMember','showInscriptions','showMessages'],
+                     'members' => ['show','showManageMember','manageMember','updateMember','showInscriptions','showMessages','addMember'],
                      'courses' => ['show','manageLesson','deleteCourse','deleteMemberFromApplication','showManageLesson','addCourse','showAddCourse','addMemberToLesson','updateLesson'],
                     'instructors' => ['logout','show','changePass']);
 

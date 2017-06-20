@@ -117,6 +117,49 @@ Class Member extends Model{
 
     }
 
+    public static function addMember($mem_ts='',$mem_email='', $mem_firstn='', $mem_lastn='', $mem_title='',
+                                        $mem_address='', $mem_zip='', $mem_city='', $mem_phone='', $mem_mobile='',
+                                        $mem_work='', $mem_birthdate='', $mem_ins='', $mem_lic_cat='', $mem_lic_pin='',
+                                        $mem_lic_ts='', $mem_status='', $mem_session=''){
+        $db=Database::get();
+
+
+        $sql='insert into members (mem_ts,mem_email,mem_firstn,mem_lastn,mem_title,mem_address,mem_zip,mem_city,mem_phone,mem_mobile,mem_work,mem_birthdate,
+                                   mem_ins,mem_lic_cat,mem_lic_pin,mem_lic_ts,mem_status,mem_session)
+                           values (:mem_ts,:mem_email,:mem_firstn,:mem_lastn,:mem_title,:mem_address,
+                                  :mem_zip,:mem_city,:mem_phone,:mem_mobile,:mem_work,:mem_birthdate,
+                                  :mem_ins,:mem_lic_cat,:mem_lic_pin,:mem_lic_ts,:mem_status,:mem_session)';
+
+
+
+        $req = $db->prepare($sql);
+        $req->bindParam(':mem_ts', $mem_ts, PDO::PARAM_STR);
+        $req->bindParam(':mem_email', $mem_email, PDO::PARAM_STR);
+        $req->bindParam(':mem_firstn', $mem_firstn, PDO::PARAM_STR);
+        $req->bindParam(':mem_lastn', $mem_lastn, PDO::PARAM_STR);
+        $req->bindParam(':mem_title', $mem_title, PDO::PARAM_STR);
+        $req->bindParam(':mem_address', $mem_address, PDO::PARAM_STR);
+        $req->bindParam(':mem_zip', $mem_zip, PDO::PARAM_STR);
+        $req->bindParam(':mem_city', $mem_city, PDO::PARAM_STR);
+        $req->bindParam(':mem_phone', $mem_phone, PDO::PARAM_STR);
+        $req->bindParam(':mem_mobile', $mem_mobile, PDO::PARAM_STR);
+        $req->bindParam(':mem_work', $mem_work, PDO::PARAM_STR);
+        $req->bindParam(':mem_birthdate', $mem_birthdate, PDO::PARAM_STR);
+        $req->bindParam(':mem_ins', $mem_ins, PDO::PARAM_STR);
+        $req->bindParam(':mem_lic_cat', $mem_lic_cat, PDO::PARAM_STR);
+        $req->bindParam(':mem_lic_pin', $mem_lic_pin, PDO::PARAM_STR);
+        $req->bindParam(':mem_lic_ts', $mem_lic_ts, PDO::PARAM_STR);
+        $req->bindParam(':mem_status', $mem_status, PDO::PARAM_STR);
+        $req->bindParam(':mem_session', $mem_session, PDO::PARAM_STR);
+
+
+        $up = $req->execute();
+
+        $ultimoId = $db->lastInsertId();
+        return $ultimoId;
+        return $ultimoId;
+
+    }
 
 
 

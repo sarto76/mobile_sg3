@@ -2,18 +2,18 @@
 <?php
 
 	// Definisco delle costanti per il db MySQL
-/*
+
 	define("DB_HOST", "localhost");
 	define("DB_USER", "root");
 	define("DB_PASS", "");
 	define("DB_NAME", "scuolag_maindb");
-*/
 
+/*
 define("DB_HOST", "192.168.2.10");
 define("DB_USER", "admin");
 define("DB_PASS", "Elenapiffa1");
 define("DB_NAME", "scuolag_maindb");
-
+*/
 
 //estendo cla classe PDO
 class Database extends PDO

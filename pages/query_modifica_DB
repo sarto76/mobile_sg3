@@ -1,10 +1,10 @@
 drop table if exists lessons;
-create table lessons (les_id int primary key auto_increment, les_course int, les_ts varchar(200),les_number int, les_instructor int);
+create table lessons (les_id int primary key auto_increment, les_course int, les_ts varchar(200),les_number int, les_instructor int,les_status int);
 
-insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_1,1, cou_ins_1 from courses;
-insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_2,2, cou_ins_2 from courses;
-insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_3,3, cou_ins_3 from courses;
-insert into lessons(les_course,les_ts,les_number, les_instructor)  select cou_id,cou_ts_4,4, cou_ins_4 from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor,les_status)  select cou_id,cou_ts_1,1, cou_ins_1,cou_status from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor,les_status)  select cou_id,cou_ts_2,2, cou_ins_2,cou_status from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor,les_status)  select cou_id,cou_ts_3,3, cou_ins_3,cou_status from courses;
+insert into lessons(les_course,les_ts,les_number, les_instructor,les_status)  select cou_id,cou_ts_4,4, cou_ins_4,cou_status from courses;
 
 alter table courses drop column cou_ts_1;
 alter table courses drop column cou_ts_2;

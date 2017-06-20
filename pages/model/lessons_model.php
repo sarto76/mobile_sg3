@@ -13,6 +13,7 @@ Class Lesson extends Model{
      public $les_ts;
      public $les_number;
      public $les_instructor;
+    public $les_status;
 
     /**
      * Lesson constructor.
@@ -22,13 +23,14 @@ Class Lesson extends Model{
      * @param $les_number
      * @param $les_instructor
      */
-    public function __construct($les_id=null, $les_course=null, $les_ts=null, $les_number=null, $les_instructor=null)
+    public function __construct($les_id=null, $les_course=null, $les_ts=null, $les_number=null, $les_instructor=null,$les_status=null)
     {
         $this->les_id = $les_id;
         $this->les_course = $les_course;
         $this->les_ts = $les_ts;
         $this->les_number = $les_number;
         $this->les_instructor = $les_instructor;
+        $this->les_status = $les_status;
     }
 
 
@@ -43,25 +45,59 @@ Class Lesson extends Model{
         $les = $req->fetch();
 
 
-        return new Lesson($les['les_id'], $les['les_course'], $les['les_ts'],$les['les_number'],$les['les_instructor']);
+        return new Lesson($les['les_id'], $les['les_course'], $les['les_ts'],$les['les_number'],$les['les_instructor'],$les['les_status']);
     }
 
 
 
-    public static function insertLesson($les_course,$les_ts,$les_number,$les_instructor) {
+    public static function insertLesson($les_course,$les_ts,$les_number,$les_instructor,$les_status) {
 
         $db=Database::get();
 
-        $sql='insert into lessons(les_course,les_ts,les_number,les_instructor) values(:les_course,:les_ts,:les_number,:les_instructor)';
+        $sql='insert into lessons(les_course,les_ts,les_number,les_instructor,les_status) values(:les_course,:les_ts,:les_number,:les_instructor,:les_status)';
         $req = $db->prepare($sql);
 
-        $ins = $req->execute(array('les_course' => $les_course,'les_ts' => $les_ts,'les_number' => $les_number,'les_instructor' => $les_instructor));
+        $ins = $req->execute(array('les_course' => $les_course,'les_ts' => $les_ts,'les_number' => $les_number,'les_instructor' => $les_instructor
+                                ,'les_status' => $les_status));
 
         $count = $req->rowCount();
         return $count;
 
 
     }
+
+    public static function updateLesson($les_id,$les_ts,$les_instructor,$les_status) {
+
+        $db=Database::get();
+
+        $sql='update lessons set les_ts=:les_ts,les_instructor=:les_instructor,les_status=:les_status where les_id=:les_id';
+        $req = $db->prepare($sql);
+
+        $ins = $req->execute(array('les_ts' => $les_ts,'les_instructor' => $les_instructor,'les_status' => $les_status,'les_id' => $les_id));
+
+        $count = $req->rowCount();
+        return $count;
+
+
+    }
+
+    public static function deleteLessonByCourse($les_course) {
+
+        $db=Database::get();
+
+        $sql='delete from lessons where les_course=:les_course';
+        $req = $db->prepare($sql);
+
+        $ins = $req->execute(array('les_course' => $les_course));
+
+        $count = $req->rowCount();
+        return $count;
+
+
+    }
+
+
+
 
     public static function hasFreePlaces($les_id) {
 

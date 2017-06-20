@@ -28,6 +28,21 @@ Class Application extends Model{
         $this->app_ins = $app_ins;
     }
 
+    public function addMemberToLesson($member_id,$lesson_id){
+        $connection=Database::get();
+
+        $member_id = intval($member_id);
+        $lesson_id = intval($lesson_id);
+        $ins=$_SESSION["ins_id"];
+
+        $req = $connection->prepare('insert into applications(app_lesson,app_member,app_ins) values ( :lesson_id,:member_id,:ins)');
+
+        $req->execute(array('member_id' => $member_id,'lesson_id' => $lesson_id,'ins' => $ins));
+        $count = $req->rowCount();
+        return $count;
+
+    }
+
 
     public function getApplications(){
         $connection=Database::get();

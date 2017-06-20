@@ -45,7 +45,7 @@ function call($controller, $action) {
 // we consider those "allowed" values
 $controllers = array('pages' => ['home', 'error','show'],
                      'members' => ['show','showManageMember','manageMember','updateMember','showInscriptions','showMessages'],
-                     'courses' => ['show','manageLesson','deleteCourse','deleteMemberFromApplication','showManageLesson','addCourse','showAddCourse'],
+                     'courses' => ['show','manageLesson','deleteCourse','deleteMemberFromApplication','showManageLesson','addCourse','showAddCourse','addMemberToLesson','updateLesson'],
                     'instructors' => ['logout','show','changePass']);
 
 // check that the requested controller and action are both allowed

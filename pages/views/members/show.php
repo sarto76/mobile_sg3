@@ -8,6 +8,17 @@
 <div class="row">
 
     <div class="col-lg-12">
+        <?php echo $this->l_error;?>
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <a style="cursor: pointer;" href='?controller=members&action=manageMember'><i class="fa fa-plus-circle"></i>
+                    Nuovo allievo
+                </a>
+
+
+            </div>
+
+        </div>
         <div class="panel panel-default">
 
             <div class="panel-body">
@@ -31,7 +42,7 @@
                                     <a href='?controller=members&action=manageMember&id=<?php echo $all->mem_id; ?>'/>
                                     <?php echo $all->mem_firstn." ".$all->mem_lastn;?> </td>
                                 <td><?php echo getDayMonthNumYearByTs($all->mem_birthdate);?> </td>
-                                <td><?php echo $all->mem_mobile;?> </td>
+                                <td><a href="tel:<?php echo $all->mem_mobile;?>"><?php echo $all->mem_mobile;?> </a></td>
                                 <td><?php echo $all->mem_address.'<br>'.$all->mem_zip." ".$all->mem_city;?> </td>
                                 <td><?php echo getLicenseTypeByNumber($all->mem_lic_cat);?> </td>
                             </tr>

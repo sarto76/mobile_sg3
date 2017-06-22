@@ -28,7 +28,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="mess">
                         <div class="row">
-                            <form role="form" method="POST" action='?controller=members&action=updateMember&id=<?php echo $this->member->mem_id; ?>'>
+                            <form role="form" method="POST" action='?controller=members&action=<?php echo $action; ?>&id=<?php echo $this->member->mem_id; ?>'>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
@@ -138,7 +138,7 @@
                                         </tbody>
                                     </table>
                                     <div class="panel-body">
-                                        <button type="submit" class="btn btn-default" id="modifica" name="modifica">Modifica
+                                        <button type="submit" class="btn btn-default" id="modifica" name="modifica"><?php echo $bott; ?>
                                         </button>
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </div>

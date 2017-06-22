@@ -6,6 +6,7 @@ class CoursesController {
     public $lezioni;
     public $istruttori;
     public $istruttore;
+    public $allAllievi;
 
 
     public function __construct()
@@ -64,6 +65,22 @@ class CoursesController {
     }
 
 
+
+    public function addMemberToLesson() {
+        $titolo_pagina="";
+        if (isset($_GET['id'])&& isset($_GET['les_id']) ) {
+
+            if(Application::addMemberToLesson($_GET['id'],$_GET['les_id'])==1){
+
+            }
+            else{
+                $l_error = '<div class="alert alert-warning">Errore: errore inserimento allievo nella lezione</div>';
+                $this->setLError($l_error);
+            }
+            $this->showManageLesson($_GET['les_id']);
+        }
+    }
+
     public function manageLesson() {
         $titolo_pagina="";
         if (isset($_GET['id'])) {
@@ -71,13 +88,13 @@ class CoursesController {
         }
     }
 
-
     public function showManageLesson($lesson_id) {
         $this->lesson = Lesson::find($lesson_id);
         $course=Course::find($this->lesson->les_course);
         $this->istruttori=Instructor::getAll();
         $this->istruttore=Instructor::find($this->lesson->les_instructor);
         $allievi=Application::getMembersByLesson($lesson_id);
+        $this->allAllievi = Member::getMembers();
         //$app=Application::find($lesson_id);
 
         $titolo_pagina="Lezione ".$this->lesson->les_number." del ".getDayMonthYearByTs($this->lesson->les_ts)." del ".($this->lesson->les_ts);
@@ -111,7 +128,6 @@ class CoursesController {
 
         //se clicco sul bottone inserisci
         if (isset($_POST['inserisci'])) {
-
             $this->setTipo($_POST['type']);
             $lezioni = getNumberLessonsByCourseType($this->getTipo());
             //inserisco il corso e ricavo il suo id
@@ -127,9 +143,9 @@ class CoursesController {
                 if ($_POST[$dataCorr] != "") {
                     //controllo se è stato messo il docente
                     if (isset($_POST[$insCorr])) {
-                        Lesson::insertLesson($idCourse, getTimestampFromChDateTime($_POST[$dataCorr]), $lez, $_POST[$insCorr]);
+                        Lesson::insertLesson($idCourse, getTimestampFromChDateTime($_POST[$dataCorr]), $lez, $_POST[$insCorr],$_POST['iscrizioni']);
                     } else {
-                        Lesson::insertLesson($idCourse, getTimestampFromChDateTime($_POST[$dataCorr]), $lez, null);
+                        Lesson::insertLesson($idCourse, getTimestampFromChDateTime($_POST[$dataCorr]), $lez, null,$_POST['iscrizioni']);
                     }
                     $l_error = '<div class="alert alert-success">Corso inserito con successo</div>';
                     $this->setLError($l_error);
@@ -211,6 +227,7 @@ class CoursesController {
         if (isset($_GET['id'])) {
             $this->setTipo(Course::find($_GET['id'])->cou_type);
             $righe = Course::deleteCourse($_GET['id']);
+            $lz = Lesson::deleteLessonByCourse($_GET['id']);
             //se ha cancellato il corso
             if($righe==1){
                 $l_error ='<div class="alert alert-success">Corso eliminato con successo</div>';
@@ -227,6 +244,42 @@ class CoursesController {
 
         }
     }
+
+    public function updateLesson() {
+
+        if (isset($_POST['id'])) {
+            $id=$_POST['id'];
+        }
+        if (isset($_POST['dataLez'])) {
+            $datalez=$_POST['dataLez'];
+        }
+        if (isset($_POST['instructor'])) {
+            $intructor=$_POST['instructor'];
+        }
+        if (isset($_POST['iscrizioni'])) {
+            $iscriz=$_POST['iscrizioni'];
+        }
+
+        //echo "<pre>";
+        //print_r("datacorr: ".$_POST[$dataCorr]." inscorr: ".$_POST[$insCorr]);
+        //echo "</pre>";
+        //controllo se ha settato le 3 date, altrimenti errore
+        if ($datalez != "") {
+            Lesson::updateLesson($id, getTimestampFromChDateTime($datalez),$intructor, $iscriz);
+
+            $l_error = '<div class="alert alert-success">Lezione modificata con successo</div>';
+            $this->setLError($l_error);
+        }
+        else {
+            $l_error = '<div class="alert alert-warning">Errore: errore nella modifica</div>';
+            $this->setLError($l_error);
+
+        }
+        $this->showManageLesson($id);
+
+    }
+
+
 
     public function manageMoto() {
 

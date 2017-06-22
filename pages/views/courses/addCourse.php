@@ -1,5 +1,3 @@
-<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="../vendor/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header"><?php echo $titolo_pagina; ?></h1>
@@ -84,10 +82,7 @@
 </div>
 <!-- /.row -->
 
-<script src="../vendor/jquery/jquery.min.js"></script>
 
-<script type="text/javascript" src="../vendor/bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../vendor/bootstrap/js/locales/bootstrap-datetimepicker.it.js" charset="UTF-8"></script>
 
 
 

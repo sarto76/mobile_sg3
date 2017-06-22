@@ -154,7 +154,8 @@ Class Course extends Model{
         $selectLess = $connection->prepare('SELECT l.*
             FROM lessons l
             JOIN courses c ON c.cou_id = l.les_course
-            WHERE c.cou_type = :type'
+            WHERE c.cou_type = :type
+            order by les_number'
         );
         $selectLess->bindParam(':type', $type, PDO::PARAM_INT);;
         $selectLess->execute();
@@ -224,7 +225,7 @@ Class Course extends Model{
         $connection=Database::get();
         $id = intval($id);
 
-        $selectLess = $connection->prepare('SELECT * FROM lessons WHERE les_course = :id');
+        $selectLess = $connection->prepare('SELECT * FROM lessons WHERE les_course = :id order by les_number');
 
         $selectLess->bindParam(':id', $id, PDO::PARAM_INT);
         $selectLess->execute();

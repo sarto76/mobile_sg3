@@ -113,6 +113,23 @@ Class Course extends Model{
 
     }
 
+    public static function hasFreePlaces($cou_id) {
+
+        //$course=self::find($cou_id);
+
+        $lessons=self::getLessons($cou_id);
+
+
+        foreach($lessons as $les){
+            //print_r ($les->les_id);
+            if(Lesson::hasFreePlaces($les->les_id)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public static function getCoursesWithLessonsByType($type) {
         $connection=Database::get();
         $selectCou = $connection->prepare('
@@ -153,6 +170,7 @@ Class Course extends Model{
 
         return $list;
     }
+
 
     public static function getActualCoursesWithLessons() {
         $connection=Database::get();

@@ -134,6 +134,24 @@ Class Application extends Model{
         return new Application($app['app_id'], $app['app_lesson'], $app['app_member'],$app['app_notes'],$app['app_ins']);
 
     }
+    public static function getApplicationByMember($member_id) {
+        $db=Database::get();
+
+
+
+        $member_id = intval($member_id);
+
+
+        $req = $db->prepare('select * from applications 
+                            where app_member=:member_id');
+
+        $req->execute(array('member_id' => $member_id));
+        $app = $req->fetch();
+
+
+        return new Application($app['app_id'], $app['app_lesson'], $app['app_member'],$app['app_notes'],$app['app_ins']);
+
+    }
 
 
 

@@ -101,6 +101,8 @@ class MembersController {
         $titolo_pagina= "Iscrizioni di ".$this->member->mem_firstn." ".$this->member->mem_lastn;
         $corsi = Course::getActualCoursesWithLessons();
         $numtot=new Setting();
+        $applications=Application::getApplicationByMember($this->member->mem_id);
+
 
         require_once('views/members/showInscriptions.php');
     }

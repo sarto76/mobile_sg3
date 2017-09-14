@@ -52,8 +52,8 @@
 
                             if (count($corsi) > 0) {
                             foreach ($corsi as $mm) {
-                               // $lezioni = $mm->lessons;
-                                $this->lezioni=$mm->getLessons($mm->cou_id);
+                                $this->lezioni = $mm->lessons;
+                                //$this->lezioni=$mm->getLessons($mm->cou_id);
                                 /*
                                 echo"<pre>";
                                 print_r($lezioni);

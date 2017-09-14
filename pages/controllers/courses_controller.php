@@ -190,8 +190,8 @@ class CoursesController {
 
         $titolo_pagina=getCourseTypeByInitials($this->getTipo());
 
-        $corsi = Course::getCoursesbyType($this->getTipo());
-       // $corsi = Course::getCoursesWithLessonsByType($this->getTipo());
+        //$corsi = Course::getCoursesbyType($this->getTipo());
+        $corsi = Course::getCoursesWithLessonsByType($this->getTipo());
 
         //print_r($corsi);
         $l_error =$this->getLError();

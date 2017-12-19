@@ -6,7 +6,7 @@
 	define("DB_HOST", "localhost");
 	define("DB_USER", "root");
 	define("DB_PASS", "");
-	define("DB_NAME", "scuolag_maindb");
+	define("DB_NAME", "mobile_sg3");
 
 /*
 define("DB_HOST", "192.168.2.10");

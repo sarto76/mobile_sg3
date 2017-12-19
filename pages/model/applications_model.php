@@ -120,7 +120,7 @@ Class Application extends Model{
 
         $list = [];
         foreach($req->fetchAll() as $corso) {
-            $list[] =  new Member($corso['mem_id'], $corso['mem_ts'], $corso['mem_firstn'],$corso['mem_lastn'], $corso['mem_title'],
+            $list[] =  new Member($corso['mem_id'], $corso['mem_ts'],$corso['mem_email'], $corso['mem_firstn'],$corso['mem_lastn'], $corso['mem_title'],
                 $corso['mem_address'],$corso['mem_zip'], $corso['mem_city'], $corso['mem_phone'],$corso['mem_mobile'], $corso['mem_work'],
                 $corso['mem_birthdate'],$corso['mem_ins'], $corso['mem_lic_cat'], $corso['mem_lic_pin'],$corso['mem_lic_ts'], $corso['mem_status'],
                 $corso['mem_session']);

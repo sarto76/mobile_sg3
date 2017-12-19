@@ -73,6 +73,8 @@ Class Member extends Model{
     }
 
 
+
+
     function getFirstname(){
 		return $this->mem_firstn;
 	}

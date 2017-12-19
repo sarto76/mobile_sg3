@@ -94,6 +94,7 @@ class CoursesController {
         $this->istruttori=Instructor::getAll();
         $this->istruttore=Instructor::find($this->lesson->les_instructor);
         $allievi=Application::getMembersByLesson($lesson_id);
+
         $this->allAllievi = Member::getMembers();
         //$app=Application::find($lesson_id);
 

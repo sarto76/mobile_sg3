@@ -1,3 +1,4 @@
+use  scuolag_maindb;
 drop table if exists lessons;
 create table lessons (les_id int primary key auto_increment, les_course int, les_ts varchar(200),les_number int, les_instructor int,les_status int);
 
@@ -32,8 +33,22 @@ delete from lessons where les_number=3 and les_course in
 (select cou_id from courses where cou_type='sam');
 
 alter table courses add index tipo (cou_type);
-alter table lessons add index cou (les_course);
+alter table lessons add index cour (les_course);
 
 
+drop table if exists license;
+create table license (lic_id int primary key auto_increment, lic_cat varchar(200), lic_type varchar(200),lic_text varchar(200));
+insert into license (lic_cat,lic_type,lic_text) values ('1','','');
+insert into license (lic_cat,lic_type,lic_text) values ('2','B','Cat. B (Auto)');
+insert into license (lic_cat,lic_type,lic_text) values ('3','A','');
+insert into license (lic_cat,lic_type,lic_text) values ('4','A1','');
 
 
+drop table if exists member_license;
+create table member_license(mem_lic_id int primary key auto_increment,lic_id int, mem_id int, mem_lic_pin varchar(200), mem_lic_ts varchar(200));
+insert into member_license(lic_id,mem_id, mem_lic_pin, mem_lic_ts) select mem_lic_cat,mem_id,mem_lic_pin,mem_lic_ts from members;
+
+alter table members drop column mem_lic_cat;
+alter table members drop column mem_id;
+alter table members drop column mem_lic_pin;
+alter table members drop column mem_lic_ts;

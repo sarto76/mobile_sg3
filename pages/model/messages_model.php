@@ -1,5 +1,4 @@
 <?php
-include_once("connection.php");
 include_once("model.php");
 
 Class Message extends Model{
@@ -20,7 +19,7 @@ Class Message extends Model{
       $this->msg_mem      = $msg_mem;
       $this->msg_ins  = $msg_ins;
       $this->msg_text = $msg_text;
-
+      parent::__construct();
     }
 
 /*
@@ -29,10 +28,9 @@ public function __construct() {
     }
   */
 
-    function getMessagesByType($type){
-        $connection=Database::get();
+    public function getMessagesByType($type){
 
-        $selectMess = $connection->prepare("SELECT msg_id,msg_ts,
+        $selectMess = parent::getConnection()->prepare("SELECT msg_id,msg_ts,
 											msg_type,msg_mem,msg_ins,msg_text 
 											FROM messages me left join members m 
 											on me.msg_mem=m.mem_id 
@@ -53,9 +51,8 @@ public function __construct() {
     
     
 	 function getMessages(){
-         $connection=Database::get();
 		//$query="SELECT * FROM messages where true"
-		$selectMess = $connection->query("SELECT * FROM messages ORDER BY msg_ts DESC");
+		$selectMess = parent::getConnection()->query("SELECT * FROM messages ORDER BY msg_ts DESC");
         return $selectMess;
         
 		
@@ -96,10 +93,9 @@ public function __construct() {
 
 
     public static function find($id) {
-        $db=Database::get();
-        // we make sure $id is an integer
+
         $id = intval($id);
-        $req = $db->prepare('SELECT * FROM messages WHERE msg_id = :id');
+        $req = self::getConnection()->prepare('SELECT * FROM messages WHERE msg_id = :id');
         // the query was prepared, now we replace :id with our actual $id value
         $req->execute(array('id' => $id));
         $messaggio = $req->fetch();

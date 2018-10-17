@@ -1,6 +1,4 @@
-<DOCTYPE html>
     <?php
-    //controllo che un utente non loggato non entri direttamente in questa pagina (controllo la sessione)
     session_start();
     if(!isset($_SESSION["l_session"])) {
         header('Location: index.php');

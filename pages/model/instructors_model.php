@@ -1,5 +1,4 @@
 <?php
-include_once("connection.php");
 include_once("model.php");
 
 Class Instructor extends Model{
@@ -52,6 +51,7 @@ Class Instructor extends Model{
         $this->ins_label = $ins_label;
         $this->ins_rank = $ins_rank;
         $this->ins_portrait = $ins_portrait;
+        parent::__construct();
     }
 
     public function login($username,$pass)
@@ -69,10 +69,10 @@ Class Instructor extends Model{
             }
         }
 
-        $connection=Database::get();
+        //$connection=$this->getConnection();
         $sql = 'SELECT * FROM instructors WHERE ins_init=:username AND ins_pass=:pass';
 
-        $result=$connection->prepare($sql);
+        $result=parent::getConnection()->prepare($sql);
         $result->bindParam(':username', $username, PDO::PARAM_STR);
         $result->bindParam(':pass', $pass, PDO::PARAM_STR);
 
@@ -86,7 +86,7 @@ Class Instructor extends Model{
             $l_code = time()."_".$codestr;
             $_SESSION["l_session"] = $l_code;
             $_SESSION["ins_id"] =$righe['ins_id'] ;
-            $connection->query("UPDATE instructors SET ins_session = '$l_code' WHERE ins_init = '$username'");
+            parent::getConnection()->query("UPDATE instructors SET ins_session = '$l_code' WHERE ins_init = '$username'");
             //header('Location:home.php');
             return true;
 
@@ -109,7 +109,12 @@ Class Instructor extends Model{
 
     public function redirect($url)
     {
-        header("Location: $url");
+        //header("Location: $url");
+
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="'.$url.'";';
+        echo '</script>';
+
     }
 
     public static function logout()
@@ -122,9 +127,7 @@ Class Instructor extends Model{
 
 
     public function getInstructors(){
-		$connection= new Database();
-		
-		$selectMem = $connection->query("SELECT * FROM instructors");
+		$selectMem = parent::getConnection()->query("SELECT * FROM instructors");
 
       return $selectMem;
 		
@@ -146,9 +149,7 @@ Class Instructor extends Model{
     }
 
     public static function getAll() {
-        $db=Database::get();
-
-        $req = $db->prepare('SELECT * FROM instructors where ins_status=1');
+        $req = self::getConnection()->prepare('SELECT * FROM instructors where ins_status=1');
 
         $req->execute();
         $list = [];
@@ -161,11 +162,10 @@ Class Instructor extends Model{
     }
 
     public static function changePass($id,$pass){
-        $db=Database::get();
 
         $id = intval($id);
         $sql='UPDATE instructors set ins_pass=:pass WHERE ins_id = :id';
-        $req = $db->prepare($sql);
+        $req = self::getConnection()->prepare($sql);
 
         $count = $req->execute(array('id' => $id,'pass'=> $pass));
 

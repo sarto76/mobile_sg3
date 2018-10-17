@@ -2,7 +2,8 @@
 class PagesController {
     public function home() {
 
-        $mess = Message::getMessagesByType(1);
+        $msg= new Message();
+        $mess=$msg->getMessagesByType(1);
 
        // echo "<pre>"; print_r($mess); echo "</pre>";
         $titolo_pagina="Cruscotto";

@@ -1,5 +1,4 @@
 <?php
-include_once("connection.php");
 include_once("model.php");
 
 Class Payment extends Model{
@@ -29,15 +28,13 @@ Class Payment extends Model{
         $this->pay_course = $pay_course;
         $this->pay_instructor = $pay_instructor;
         $this->pay_amount = $pay_amount;
+        parent::__construct();
     }
 
 
     public static function getPaymentsByInstructorId($id) {
-        $connection=Database::get();
         $id = intval($id);
-
-
-        $selectPay = $connection->prepare('SELECT * FROM payments WHERE pay_instructor = :id');
+        $selectPay = self::getConnection()->prepare('SELECT * FROM payments WHERE pay_instructor = :id');
 
         $selectPay->bindParam(':id', $id, PDO::PARAM_INT);
         $selectPay->execute();
@@ -51,11 +48,8 @@ Class Payment extends Model{
     }
 
     public static function getPaymentsByMemberId($id) {
-        $connection=Database::get();
         $id = intval($id);
-
-
-        $selectPay = $connection->prepare('SELECT * FROM payments WHERE pay_member = :id');
+        $selectPay = self::getConnection()->prepare('SELECT * FROM payments WHERE pay_member = :id');
 
         $selectPay->bindParam(':id', $id, PDO::PARAM_INT);
         $selectPay->execute();
@@ -70,10 +64,9 @@ Class Payment extends Model{
 
 
     public static function getPaymentsByMemberAndCourseId($member_id,$course_id) {
-        $db=Database::get();
         $member_id = intval($member_id);
         $course_id= intval($course_id);
-        $req = $db->prepare('SELECT * FROM payments WHERE pay_member = :member_id and pay_course= :course_id');
+        $req = self::getConnection()->prepare('SELECT * FROM payments WHERE pay_member = :member_id and pay_course= :course_id');
 
         $req->execute(array('member_id' => $member_id,'course_id' => $course_id));
         $pag = $req->fetch();
@@ -85,10 +78,8 @@ Class Payment extends Model{
 
 
     public static function find($id) {
-        $db=Database::get();
-        // we make sure $id is an integer
         $id = intval($id);
-        $req = $db->prepare('SELECT * FROM payments WHERE pay_id = :id');
+        $req = self::getConnection()->prepare('SELECT * FROM payments WHERE pay_id = :id');
 
         $req->execute(array('id' => $id));
         $pag = $req->fetch();

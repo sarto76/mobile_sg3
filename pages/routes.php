@@ -16,7 +16,7 @@ function call($controller, $action) {
             break;
 
         case 'members':
-            require_once("functions.php");
+            require_once("libs/functions.php");
             require_once("model/members_model.php");
             require_once("model/courses_model.php");
             require_once("model/instructors_model.php");
@@ -26,13 +26,14 @@ function call($controller, $action) {
             break;
 
         case 'courses':
-            require_once("functions.php");
+            require_once("libs/functions.php");
             require_once("model/courses_model.php");
             require_once("model/instructors_model.php");
             require_once("model/members_model.php");
             require_once("model/settings_model.php");
             require_once("model/applications_model.php");
             require_once("model/payments_model.php");
+            require_once("model/member_license_model.php");
             $controller = new CoursesController();
             break;
     }

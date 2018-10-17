@@ -110,6 +110,8 @@
                                     foreach ($allievi as $all):
                                         $app=Application::getApplicationByLessonAndMember($lesson_id,$all->mem_id);
                                         $pagamento=Payment::getPaymentsByMemberAndCourseId($all->mem_id,$this->lesson->les_course);
+                                        $ml=new MemberLicense();
+                                        $cat=$ml->getLicenseCatByLessonAndMemberId($lesson_id,$all->mem_id);
                                         //print_r($pagamento);
                                         //$membro=Member::find($applications->app_member);
                                         $membro_full= $all->mem_firstn." ".$all->mem_lastn;
@@ -124,7 +126,7 @@
                                         <tr class='odd gradeX'>
                                             <td><?php echo $cont;?></td>
                                             <td><a href='?controller=members&action=manageMember&id=<?php echo $all->mem_id ?>'> <?php echo $membro_full ?></td>
-                                            <td><?php echo getLicenseTypeByNumber($all->mem_lic_cat,1) ?></td>
+                                            <td><?php echo getLicenseTypeByNumber($cat,1) ?></td>
                                             <td><?php echo$all->mem_mobile ?></td>
                                             <td><?php echo $app->app_notes ?></td>
                                             <td>

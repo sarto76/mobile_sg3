@@ -1,5 +1,4 @@
 <?php
-include_once("connection.php");
 include_once("model.php");
 
 Class Setting extends Model{
@@ -238,29 +237,25 @@ public $pay_teo_short;
         $this->sg3_page_title = $sg3_page_title;
         $this->sg3_page_desc = $sg3_page_desc;
         $this->pay_teo_short = $pay_teo_short;
+        parent::__construct();
     }
 
 
 
 
     public function getValueByName($name){
-        $db=Database::get();
-
-        $req = $db->prepare('SELECT set_value FROM settings WHERE set_name = :name' );
+        $req = parent::getConnection()->prepare('SELECT set_value FROM settings WHERE set_name = :name' );
 
         $req->execute(array('name' => $name));
         $set = $req->fetch();
-
-
         return $set['set_value'];
     }
 
 
 
     public function getSettings(){
-        $connection=Database::get();
 
-        $selectSettings = $connection->query("SELECT * FROM settings");
+        $selectSettings = parent::getConnection()->query("SELECT * FROM settings");
 
         $connection=null;
         return $selectSettings;

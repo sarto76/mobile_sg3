@@ -70,7 +70,7 @@ class CoursesController {
         $titolo_pagina="";
         if (isset($_GET['id'])&& isset($_GET['les_id']) ) {
 
-            if(Application::addMemberToLesson($_GET['id'],$_GET['les_id'])==1){
+            if(Application::addMemberLicenseToLesson($_GET['id'],$_GET['les_id'])==1){
 
             }
             else{

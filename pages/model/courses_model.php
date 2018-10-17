@@ -1,5 +1,4 @@
 <?php
-include_once("connection.php");
 include_once("model.php");
 include_once("lessons_model.php");
 
@@ -27,33 +26,30 @@ Class Course extends Model{
         $this->cou_type = $cou_type;
         $this->cou_status = $cou_status;
         $this->cou_fbid = $cou_fbid;
+        parent::__construct();
     }
 
 
 
     public static function addCourseByType($type){
-        $db=Database::get();
-
 
         $sql='insert into courses(cou_type) values(:type)';
-        $req = $db->prepare($sql);
+        $req = self::getConnection()->prepare($sql);
 
         $ins = $req->execute(array('type' => $type));
 
-        $ultimoId = $db->lastInsertId();
+        $ultimoId = self::getConnection()->lastInsertId();
         return $ultimoId;
 
     }
     public static function addCourseByTypeAndStatus($type,$status){
-        $db=Database::get();
-
 
         $sql='insert into courses(cou_type,cou_status) values(:type,:status)';
-        $req = $db->prepare($sql);
+        $req = self::getConnection()->prepare($sql);
 
         $ins = $req->execute(array('type' => $type,'status' => $status));
 
-        $ultimoId = $db->lastInsertId();
+        $ultimoId = self::getConnection()->lastInsertId();
         return $ultimoId;
 
     }
@@ -61,11 +57,9 @@ Class Course extends Model{
 
 
     public static function deleteCourse($id){
-        $db=Database::get();
-
         $id = intval($id);
         $sql='DELETE from courses WHERE cou_id = :id';
-        $req = $db->prepare($sql);
+        $req = self::getConnection()->prepare($sql);
 
         $del = $req->execute(array('id' => $id));
 
@@ -73,7 +67,7 @@ Class Course extends Model{
 
 
         $sql1='DELETE from lessons WHERE les_course = :id';
-        $req1 = $db->prepare($sql1);
+        $req1 = self::getConnection()->prepare($sql1);
 
         $del1 = $req1->execute(array('id' => $id));
 
@@ -85,20 +79,14 @@ Class Course extends Model{
 
 
     public function getCourses(){
-        $connection=Database::get();
-
-        $selectCourses = $connection->query("SELECT * FROM courses");
+        $selectCourses = self::getConnection()->query("SELECT * FROM courses");
         return $selectCourses;
 
     }
 
     public static function getCoursesbyType($type) {
-       // $connection= new Database();
-        $connection=Database::get();
 
-        //$selectCou = $connection->prepare('SELECT * FROM courses WHERE cou_type = :type order by cou_ts_1 desc');
-
-        $selectCou = $connection->prepare('SELECT * FROM courses WHERE cou_type = :type order by cou_id desc');
+        $selectCou = self::getConnection()->prepare('SELECT * FROM courses WHERE cou_type = :type order by cou_id desc');
         //$selectCou = $connection->prepare('SELECT * FROM courses WHERE cou_type = :type order by cou_id desc limit 20');
 
 
@@ -115,8 +103,6 @@ Class Course extends Model{
 
     public static function hasFreePlaces($cou_id) {
 
-        //$course=self::find($cou_id);
-
         $lessons=self::getLessons($cou_id);
 
 
@@ -131,8 +117,7 @@ Class Course extends Model{
     }
 
     public static function getCoursesWithLessonsByType($type) {
-        $connection=Database::get();
-        $selectCou = $connection->prepare('
+        $selectCou = static::getConnection()->prepare('
             SELECT * 
             FROM courses
             WHERE cou_type = :type
@@ -151,7 +136,7 @@ Class Course extends Model{
             );
         }
 
-        $selectLess = $connection->prepare('SELECT l.*
+        $selectLess = self::getConnection()->prepare('SELECT l.*
             FROM lessons l
             JOIN courses c ON c.cou_id = l.les_course
             WHERE c.cou_type = :type
@@ -174,8 +159,6 @@ Class Course extends Model{
 
 
     public static function getActualCoursesWithLessons() {
-        $connection=Database::get();
-
 
         $sql='SELECT *
             FROM courses c, lessons l
@@ -183,7 +166,7 @@ Class Course extends Model{
             and l.les_ts>=(select UNIX_TIMESTAMP())
             order by cou_type desc,cou_id desc';
 
-        $selectCou = $connection->prepare($sql);
+        $selectCou = self::getConnection()->prepare($sql);
 
         $selectCou->execute();
 
@@ -203,7 +186,7 @@ Class Course extends Model{
             JOIN courses c ON c.cou_id = l.les_course
             where l.les_ts>=(select UNIX_TIMESTAMP())';
 
-        $selectLess = $connection->prepare($sqlLess);
+        $selectLess = self::getConnection()->prepare($sqlLess);
 
         $selectLess->execute();
         foreach($selectLess->fetchAll() as $lezione) {
@@ -221,11 +204,10 @@ Class Course extends Model{
 
 
     public static function getLessons($id) {
-        //$connection= new Database();
-        $connection=Database::get();
+
         $id = intval($id);
 
-        $selectLess = $connection->prepare('SELECT * FROM lessons WHERE les_course = :id order by les_number');
+        $selectLess = self::getConnection()->prepare('SELECT * FROM lessons WHERE les_course = :id order by les_number');
 
         $selectLess->bindParam(':id', $id, PDO::PARAM_INT);
         $selectLess->execute();
@@ -242,10 +224,9 @@ Class Course extends Model{
 
 
     public static function find($id) {
-        $db=Database::get();
         // we make sure $id is an integer
         $id = intval($id);
-        $req = $db->prepare('SELECT * FROM courses WHERE cou_id = :id');
+        $req = self::getConnection()->prepare('SELECT * FROM courses WHERE cou_id = :id');
 
         $req->execute(array('id' => $id));
         $cou = $req->fetch();

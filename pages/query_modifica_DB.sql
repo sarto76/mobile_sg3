@@ -52,3 +52,7 @@ alter table members drop column mem_lic_cat;
 alter table members drop column mem_id;
 alter table members drop column mem_lic_pin;
 alter table members drop column mem_lic_ts;
+
+alter table applications add column member_license int;
+update applications a set member_license= (select mem_lic_id from member_license m where m.mem_id=a.app_member);
+alter table applications drop column app_member;
